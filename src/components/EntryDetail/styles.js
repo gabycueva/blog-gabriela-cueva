@@ -1,25 +1,12 @@
 import styled from 'styled-components';
 
-export const Div = styled.div`
-  color: #38147a;
-  font-size: 16px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 export const Container = styled.div`
-  background-color: #fff;
+  background-color: red;
   width: 100%;
   display: flex;
   flex-direction: column;
   font-family: 'Roboto-Regular';
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  padding-bottom: 16px;
-  & > button {
-    width: 200px;
-    margin: 0 16px;
-  }
 `;
 
 export const FlexContent = styled.div`
@@ -32,13 +19,12 @@ export const Title = styled.div`
   color: #272A2D;
   font-size: 28px;
   font-family: 'Roboto-Bold';
-  border-bottom: 2px solid  #272A2D;
+  border-bottom: 2px solid #38147a;
   width: 100%;
   text-align: left;
   text-transform: capitalize;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   & .title {
     margin: 8px 16px;
     text-overflow: ellipsis;
