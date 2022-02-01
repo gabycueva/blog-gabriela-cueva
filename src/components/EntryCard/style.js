@@ -69,6 +69,7 @@ export const Content = styled.div`
   overflow: hidden;
   max-width: 70ch;
   padding: 0 16px;
+  text-align: left;
 `;
 
 export const Divider = styled.div`

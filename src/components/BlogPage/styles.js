@@ -34,6 +34,7 @@ export const Flex = styled.div`
 `;
 
 export const CardsContainer = styled.div`
+  width: 581px;
   height: 681px;
   overflow-y: auto;
   & > div {
@@ -45,7 +46,7 @@ export const FieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 350px;
+  height: 380px;
   padding: 16px;
   background-color: #fff;
   

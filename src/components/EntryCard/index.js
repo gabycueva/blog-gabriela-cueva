@@ -11,7 +11,7 @@ function EntryCard(props) {
         <>
             {data.map((item, index) => (
                 <Container key={index}>
-                    <Title><div className="title">{item.title}</div><div className="icon"><DeleteOutlinedIcon onClick={onDeleteEntry} /></div></Title>
+                    <Title><div className="title">{item.title}</div><div className="icon"><DeleteOutlinedIcon onClick={() => onDeleteEntry(index)} /></div></Title>
                     <Divider height={24} />
                     <FlexContent>
                         <Author>{item.author ? item.author : 'Gabriela Cueva'}</Author><Date>{item.date ? item.date : moment().format('LL')}</Date>
