@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import moment from "moment";
-import {Author, Container, Content, Date, Divider, FlexContent, Title} from "./styles";
+import {Div, Author, Container, Content, Date, Divider, FlexContent, Title} from "./styles";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function EntryDetail(props) {
     const { data, handleGoBack } = props;
     return (
         <div>
-            <ArrowBackIcon onClick={handleGoBack} />
+            <Div>
+                <ArrowBackIcon onClick={handleGoBack} /> Volver al inicio
+            </Div>
             <Container>
                 <Title><div className="title">{data.title}</div></Title>
                 <Divider height={24} />

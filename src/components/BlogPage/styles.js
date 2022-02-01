@@ -3,6 +3,23 @@ export const Div = styled.div`
   & > h1{
     text-align: left;
   }
+  & .searcher {
+    text-align: left;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    & input {
+      width: 50%;
+      height: 20px;
+      border: none;
+      padding: 8px 16px;
+    }
+    & > svg {
+      fill: black;
+      opacity: 0.5;
+      margin-left: -35px;
+    }
+  }
 `;
 
 export const Flex = styled.div`
@@ -26,6 +43,7 @@ export const FieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
+  height: 450px;
   padding: 16px;
   background-color: #fff;
   & > div {
@@ -49,6 +67,7 @@ export const Button = styled.button`
 
 export const BlogTitle = styled.h1`
   color: #000;
+  font-family: CreatoDisplay-Regular;
 `;
 
 export const SearcherContainer = styled.div`

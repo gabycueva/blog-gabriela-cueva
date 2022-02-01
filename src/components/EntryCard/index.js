@@ -1,17 +1,16 @@
 import React from 'react';
-import {Container, Title, Author, Date, Content, FlexContent, Divider, Div} from "./style";
+import {Container, Title, Author, Date, Content, FlexContent, Divider, Button} from "./style";
 import PropTypes from "prop-types";
 import moment from "moment";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import {Button} from "../BlogPage/styles";
 
 function EntryCard(props) {
     const { data, onDeleteEntry, onHandleInformation } = props;
 
     return (
         <>
-            {data.map((item, i) => (
-                <Container key={i}>
+            {data.map((item, index) => (
+                <Container key={index}>
                     <Title><div className="title">{item.title}</div><div className="icon"><DeleteOutlinedIcon onClick={onDeleteEntry} /></div></Title>
                     <Divider height={24} />
                     <FlexContent>
@@ -22,7 +21,7 @@ function EntryCard(props) {
                         {item.body}
                     </Content>
                     <Divider height={16} />
-                    <Button onClick={() => onHandleInformation(item)} >Ver entrada completa</Button>
+                        <Button onClick={() => onHandleInformation(item)} >Ver entrada completa</Button>
                 </Container>
             ))}
         </>

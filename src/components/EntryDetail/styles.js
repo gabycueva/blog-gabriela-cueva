@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 
+export const Div = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  color: #000;
+  & > svg {
+    margin-right: 8px;
+    fill: #000;
+  }
+`;
+
 export const Container = styled.div`
-  background-color: red;
+  background-color: #fff;
   width: 100%;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   font-family: 'Roboto-Regular';
@@ -50,11 +63,8 @@ export const Date = styled.div`
 export const Content = styled.div`
   color: #272A2D;
   font-size: 16px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 70ch;
   padding: 0 16px;
+  text-align: left;
 `;
 
 export const Divider = styled.div`
