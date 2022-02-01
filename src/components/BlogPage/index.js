@@ -10,6 +10,7 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import moment from "moment";
+import EmptyState from "../EmptyState";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -85,13 +86,6 @@ function BlogPage() {
         setNewEntry(_author => ({
             ..._author,
             author: value,
-        }))
-    };
-
-    const handleChangeDate = value => {
-        setNewEntry(_date => ({
-            ..._date,
-            date: value,
         }))
     };
 
@@ -180,13 +174,13 @@ function BlogPage() {
                 <Div>
                     <Flex>
                         <CardsContainer>
-                            <EntryCard onHandleInformation={data => handleData(data)} data={updatedList} onDeleteEntry={handleDeleteItem} />
+                            {updatedList.length ? <EntryCard onHandleInformation={data => handleData(data)} data={updatedList} onDeleteEntry={index => handleDeleteItem(index)} /> : <EmptyState />}
                         </CardsContainer>
                         <FieldsContainer>
                             <TextField
                                 id="standard-basic"
                                 label="Titulo"
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.title}
                                 onChange={e => handleChangeTitle(e.target.value)}
                                 InputLabelProps={{
@@ -197,7 +191,7 @@ function BlogPage() {
                             <TextField
                                 id="standard-basic"
                                 label="Autor"
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.author}
                                 onChange={e => handleChangeAuthor(e.target.value)}
                                 InputLabelProps={{
@@ -211,7 +205,13 @@ function BlogPage() {
                                 inputFormat="DD/MM/yyyy"
                                 value={fecha}
                                 onChange={handleChange}
-                                renderInput={(params) => <TextField {...params} />}
+                                renderInput={(params) =>
+                                    <TextField
+                                        InputLabelProps={{
+                                            style: {
+                                                color: '#38147a'
+                                            } }} variant="standard" {...params}
+                                    />}
                             />
                             </LocalizationProvider>
                             <TextField
@@ -219,7 +219,7 @@ function BlogPage() {
                                 minRows={4}
                                 id="standard-basic"
                                 label="Escribe aquí..."
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.body}
                                 onChange={e => handleChangeContent(e.target.value)}
                                 InputLabelProps={{
