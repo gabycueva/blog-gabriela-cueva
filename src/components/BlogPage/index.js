@@ -3,7 +3,13 @@ import EntryCard from "../EntryCard";
 import {BlogTitle, Button, CardsContainer, Div, FieldsContainer, Flex} from "./styles";
 import {TextField} from "@mui/material";
 import EntryDetail from "../EntryDetail";
-import ErrorIcon from '@mui/icons-material/Error';
+import SearchIcon from '@mui/icons-material/Search';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function BlogPage() {
 
@@ -13,16 +19,22 @@ function BlogPage() {
             title: '',
             author: '',
             date: '',
-            content: '',
+            body: '',
             entries: [],
         });
     const [dataEntry, setDataEntry] = useState([]);
     const [showDetail, setShowDetail] = useState(false);
     const [status, setStatus] = useState(true);
+    const [value, setValue] = useState("");
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         getDummyEntries();
     }, []);
+
+    useEffect(() => {
+        if (!status) setOpen(true);
+    }, [status]);
 
         useEffect(() => {
             function changeStatus() {
@@ -36,7 +48,13 @@ function BlogPage() {
             };
         }, []);
 
-        console.log('estatus', status);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     const getDummyEntries = async () => {
 
@@ -44,7 +62,7 @@ function BlogPage() {
             .then(response => response.json())
             .then(json => {
                 if (json) {
-                    const items = json.slice(0, 3);
+                    const items = json.slice(0, 2);
                     setEntries(items);
                 }
             });
@@ -74,7 +92,7 @@ function BlogPage() {
     const handleChangeContent = value => {
         setNewEntry(_content => ({
             ..._content,
-            content: value,
+            body: value,
         }))
     };
 
@@ -84,9 +102,10 @@ function BlogPage() {
             ..._new,
             entries: newEntry,
         }));
+        clearFields();
     }
 
-    const disabled = !newEntry.title || !newEntry.author || !newEntry.date || !newEntry.content || !status;
+    const disabled = !newEntry.title || !newEntry.author || !newEntry.date || !newEntry.body || !status;
 
     const handleDeleteItem = index => {
             const newEntries = [...entries];
@@ -105,10 +124,24 @@ function BlogPage() {
         setShowDetail(true);
     }
 
+    const searchValue = value.toLowerCase();
+    const updatedList = entries.filter((item) => {
+        return Object.keys(item).some(key => item[key].toString().search(searchValue) !== -1);
+    });
+
+    const clearFields = () => {
+        setNewEntry({
+            title: '',
+            author: '',
+            date: '',
+            body: '',
+            entries: [],
+        })
+    }
+
     return (
         <Div>
             <BlogTitle>Blog - Gabriela Cueva</BlogTitle>
-            {!status && <span><ErrorIcon /> ¡Ups! Hubo un error en la conexión a internet.</span>}
             {showDetail? (
                 <>
                     <EntryDetail data={dataEntry} handleGoBack={() => {
@@ -118,29 +151,38 @@ function BlogPage() {
                 </>
             ) : (
                 <Div>
+                    <div className="searcher">
+                        <input
+                            placeholder="Buscar entradas por autor, contenido, titulo..."
+                            type="text"
+                            value={value}
+                            onChange={e => setValue(e.target.value)}
+                        />
+                        <SearchIcon />
+                    </div>
                     <Flex>
                         <CardsContainer>
-                            <EntryCard onHandleInformation={data => handleData(data)} data={entries} onDeleteEntry={handleDeleteItem} />
+                            <EntryCard onHandleInformation={data => handleData(data)} data={updatedList} onDeleteEntry={handleDeleteItem} />
                         </CardsContainer>
                         <FieldsContainer>
                             <TextField
                                 id="standard-basic"
                                 label="Titulo"
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.title}
                                 onChange={e => handleChangeTitle(e.target.value)}
                             />
                             <TextField
                                 id="standard-basic"
                                 label="Autor"
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.author}
                                 onChange={e => handleChangeAuthor(e.target.value)}
                             />
                             <TextField
                                 id="standard-basic"
                                 label="Fecha"
-                                variant="outlined"
+                                variant="standard"
                                 value={newEntry.date}
                                 onChange={e => handleChangeDate(e.target.value)}
                             />
@@ -149,8 +191,8 @@ function BlogPage() {
                                 minRows={8}
                                 id="standard-basic"
                                 label="Escribe aquí..."
-                                variant="outlined"
-                                value={newEntry.content}
+                                variant="standard"
+                                value={newEntry.body}
                                 onChange={e => handleChangeContent(e.target.value)}
                             />
                             <Button disabled={disabled} onClick={() => handleCreateEntry()}>Crear entrada</Button>
@@ -158,6 +200,11 @@ function BlogPage() {
                     </Flex>
                 </Div>
             )}
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Ocurrió un error con la conexión a internet.
+                </Alert>
+            </Snackbar>
         </Div>
     );
 }

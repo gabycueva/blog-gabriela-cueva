@@ -75,3 +75,17 @@ export const Divider = styled.div`
   width: 100%;
   height: ${props => props.height}px;
 `;
+
+export const Button = styled.button`
+  width: 200px;
+  height: 41px;
+  background-color: ${props => props.disabled? '#878787' : '#38147a'};
+  border-color: transparent;
+  color: #fff;
+  font-size: 16px;
+  transition: background 0.25s;
+  box-shadow: none;
+  &:hover {
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  }
+`;
