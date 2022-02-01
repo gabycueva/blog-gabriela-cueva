@@ -20,6 +20,9 @@ export const Container = styled.div`
   flex-direction: column;
   font-family: CreatoDisplay-Regular;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FlexContent = styled.div`
