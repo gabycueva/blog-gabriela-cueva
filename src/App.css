@@ -25,6 +25,12 @@
   color: white;
 }
 
+@media (max-width: 786px) {
+  .App-header {
+    padding: 16px;
+  }
+}
+
 .App-link {
   color: #61dafb;
 }

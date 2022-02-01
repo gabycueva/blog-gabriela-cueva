@@ -149,7 +149,7 @@ function BlogPage() {
 
     return (
         <Div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+            <div className="header">
                 <BlogTitle>Blog - Gabriela Cueva</BlogTitle>
                 {!showDetail && (
                     <div className="searcher">

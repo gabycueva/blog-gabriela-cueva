@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 export const Div = styled.div`
+  & .header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  
   & > h1{
     text-align: left;
   }
@@ -13,6 +22,10 @@ export const Div = styled.div`
       border: none;
       padding: 8px 16px;
       margin-right: 16px;
+      @media (max-width: 768px) {
+        margin-bottom: 16px;
+        width: 80%;
+      }
     }
     & > svg {
       fill: black;
@@ -20,7 +33,14 @@ export const Div = styled.div`
       margin-left: -35px;
       width: 18px;
       height: 18px;
+      @media (max-width: 768px) {
+        margin-left: -46px;
+        margin-top: -10px;
+      }
     }
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -31,6 +51,12 @@ export const Flex = styled.div`
   & > div:first-child {
     margin-right: 20px;
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    & > div:first-child {
+      margin-right: 0;
+    }
+  }
 `;
 
 export const CardsContainer = styled.div`
@@ -39,6 +65,10 @@ export const CardsContainer = styled.div`
   overflow-y: auto;
   & > div {
     margin-bottom: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -49,6 +79,10 @@ export const FieldsContainer = styled.div`
   height: 380px;
   padding: 16px;
   background-color: #fff;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   
   & .css-1480iag-MuiInputBase-root-MuiInput-root:after {
     border-bottom: 2px solid #38147a;
