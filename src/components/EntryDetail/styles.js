@@ -18,7 +18,7 @@ export const Container = styled.div`
   height: 50vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto-Regular';
+  font-family: CreatoDisplay-Regular;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 `;
 
@@ -31,7 +31,7 @@ export const FlexContent = styled.div`
 export const Title = styled.div`
   color: #272A2D;
   font-size: 28px;
-  font-family: 'Roboto-Bold';
+  font-family: CreatoDisplay-Bold;
   border-bottom: 2px solid #38147a;
   width: 100%;
   text-align: left;
@@ -70,4 +70,21 @@ export const Content = styled.div`
 export const Divider = styled.div`
   width: 100%;
   height: ${props => props.height}px;
+`;
+
+export const Button = styled.div`
+  width: 150px;
+  height: 41px;
+  background-color: #38147a;
+  border-color: transparent;
+  color: #fff;
+  font-size: 16px;
+  transition: background 0.25s;
+  box-shadow: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -6,6 +6,11 @@ import EntryDetail from "../EntryDetail";
 import SearchIcon from '@mui/icons-material/Search';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import DateAdapter from '@mui/lab/AdapterMoment';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import moment from "moment";
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -18,7 +23,7 @@ function BlogPage() {
         {
             title: '',
             author: '',
-            date: '',
+            date: moment().format('LL'),
             body: '',
             entries: [],
         });
@@ -27,6 +32,7 @@ function BlogPage() {
     const [status, setStatus] = useState(true);
     const [value, setValue] = useState("");
     const [open, setOpen] = React.useState(false);
+    const [fecha, setFecha] = React.useState(moment().format());
 
     useEffect(() => {
         getDummyEntries();
@@ -133,15 +139,36 @@ function BlogPage() {
         setNewEntry({
             title: '',
             author: '',
-            date: '',
+            date:  moment().format('LL'),
             body: '',
             entries: [],
         })
     }
 
+    const handleChange = (newValue) => {
+        setFecha(newValue);
+        setNewEntry(_date => ({
+            ..._date,
+            date:  moment(fecha).format('LL').toString(),
+        }))
+    };
+
     return (
         <Div>
-            <BlogTitle>Blog - Gabriela Cueva</BlogTitle>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+                <BlogTitle>Blog - Gabriela Cueva</BlogTitle>
+                {!showDetail && (
+                    <div className="searcher">
+                        <input
+                            placeholder="Buscar entradas..."
+                            type="text"
+                            value={value}
+                            onChange={e => setValue(e.target.value)}
+                        />
+                        <SearchIcon />
+                    </div>
+                )}
+            </div>
             {showDetail? (
                 <>
                     <EntryDetail data={dataEntry} handleGoBack={() => {
@@ -151,15 +178,6 @@ function BlogPage() {
                 </>
             ) : (
                 <Div>
-                    <div className="searcher">
-                        <input
-                            placeholder="Buscar entradas por autor, contenido, titulo..."
-                            type="text"
-                            value={value}
-                            onChange={e => setValue(e.target.value)}
-                        />
-                        <SearchIcon />
-                    </div>
                     <Flex>
                         <CardsContainer>
                             <EntryCard onHandleInformation={data => handleData(data)} data={updatedList} onDeleteEntry={handleDeleteItem} />
@@ -168,32 +186,46 @@ function BlogPage() {
                             <TextField
                                 id="standard-basic"
                                 label="Titulo"
-                                variant="standard"
+                                variant="outlined"
                                 value={newEntry.title}
                                 onChange={e => handleChangeTitle(e.target.value)}
+                                InputLabelProps={{
+                                    style: {
+                                        color: '#38147a'
+                                    } }}
                             />
                             <TextField
                                 id="standard-basic"
                                 label="Autor"
-                                variant="standard"
+                                variant="outlined"
                                 value={newEntry.author}
                                 onChange={e => handleChangeAuthor(e.target.value)}
+                                InputLabelProps={{
+                                    style: {
+                                        color: '#38147a'
+                                    } }}
                             />
-                            <TextField
-                                id="standard-basic"
+                            <LocalizationProvider dateAdapter={DateAdapter}>
+                            <DesktopDatePicker
                                 label="Fecha"
-                                variant="standard"
-                                value={newEntry.date}
-                                onChange={e => handleChangeDate(e.target.value)}
+                                inputFormat="DD/MM/yyyy"
+                                value={fecha}
+                                onChange={handleChange}
+                                renderInput={(params) => <TextField {...params} />}
                             />
+                            </LocalizationProvider>
                             <TextField
                                 multiline
-                                minRows={8}
+                                minRows={4}
                                 id="standard-basic"
                                 label="Escribe aquí..."
-                                variant="standard"
+                                variant="outlined"
                                 value={newEntry.body}
                                 onChange={e => handleChangeContent(e.target.value)}
+                                InputLabelProps={{
+                                    style: {
+                                        color: '#38147a'
+                                    } }}
                             />
                             <Button disabled={disabled} onClick={() => handleCreateEntry()}>Crear entrada</Button>
                         </FieldsContainer>

@@ -13,7 +13,7 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto-Regular';
+  font-family: 'CreatoDisplay-Regular';
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   padding-bottom: 16px;
   & > button {
@@ -31,7 +31,7 @@ export const FlexContent = styled.div`
 export const Title = styled.div`
   color: #272A2D;
   font-size: 28px;
-  font-family: 'Roboto-Bold';
+  font-family: 'CreatoDisplay-Bold';
   border-bottom: 2px solid  #272A2D;
   width: 100%;
   text-align: left;
@@ -46,8 +46,8 @@ export const Title = styled.div`
     overflow: hidden;
     max-width: 20ch;
   }
-  
   & .icon {
+    margin-right: 16px;
     &:hover {
       cursor: pointer;
     }

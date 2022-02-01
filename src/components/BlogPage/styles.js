@@ -5,19 +5,21 @@ export const Div = styled.div`
   }
   & .searcher {
     text-align: left;
-    margin-bottom: 16px;
     display: flex;
     align-items: center;
     & input {
-      width: 50%;
+      width: 100%;
       height: 20px;
       border: none;
       padding: 8px 16px;
+      margin-right: 16px;
     }
     & > svg {
       fill: black;
       opacity: 0.5;
       margin-left: -35px;
+      width: 18px;
+      height: 18px;
     }
   }
 `;
@@ -43,9 +45,14 @@ export const FieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 450px;
+  height: 350px;
   padding: 16px;
   background-color: #fff;
+  
+  & .css-1480iag-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 2px solid #38147a;
+  }
+  
   & > div {
     margin-bottom: 10px;
   }

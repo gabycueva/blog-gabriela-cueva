@@ -13,6 +13,11 @@ body {
 }
 
 @font-face {
+  font-family: 'CreatoDisplay-Bold';
+  src: local('CreatoDisplay'), url(./fonts/creato_display/CreatoDisplay-Bold.otf) format('truetype');
+}
+
+@font-face {
   font-family: 'Roboto-Regular';
   src: local('Roboto'), url(./fonts/roboto/Roboto-Regular.ttf) format('truetype');
 }

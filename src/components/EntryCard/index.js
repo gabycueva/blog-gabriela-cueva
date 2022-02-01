@@ -14,7 +14,7 @@ function EntryCard(props) {
                     <Title><div className="title">{item.title}</div><div className="icon"><DeleteOutlinedIcon onClick={onDeleteEntry} /></div></Title>
                     <Divider height={24} />
                     <FlexContent>
-                        <Author>{item.author ? item.author : 'Gabriela Cueva'}</Author><Date>{item.date ? item.date : moment().format('MMMM Do YYYY')}</Date>
+                        <Author>{item.author ? item.author : 'Gabriela Cueva'}</Author><Date>{item.date ? item.date : moment().format('LL')}</Date>
                     </FlexContent>
                     <Divider height={24} />
                     <Content>
