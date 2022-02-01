@@ -81,8 +81,7 @@ export const FieldsContainer = styled.div`
   background-color: #fff;
 
   @media (max-width: 768px) {
-    width: 100%;
-    padding: 0;
+    width: 90%;
   }
   
   & .css-1480iag-MuiInputBase-root-MuiInput-root:after {
